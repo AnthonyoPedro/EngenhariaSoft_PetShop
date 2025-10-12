@@ -32,3 +32,13 @@ exports.deletePet = async (req, res) => {
     res.status(200).json({message: "Pet removido com sucesso!"})
 
 }
+
+exports.putPetById = async(req, res) => {
+    try{
+        const p = await Pet.findByIdAndUpdate(req.params.id. req.body, {new : true});
+        res.status(200).json(p)
+    }catch(err){
+        res.status(400).json({error: err.message});
+    }
+} 
+

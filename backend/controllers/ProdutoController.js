@@ -36,3 +36,20 @@ exports.createProduto = async (req, res) =>{
      }
           
      
+ exports.deleteProduto = async (req, res) => {
+
+    await produto.findByIdAndDelete(req.params.id);
+    res.status(200).json({message: "Produto removido com sucesso!"})
+
+}
+
+exports.putProdutoById = async(req, res) => {
+    try{
+        const p = await produto.findByIdAndUpdate(req.params.id. req.body, {new : true});
+        res.status(200).json(p)
+    }catch(err){
+        res.status(400).json({error: err.message});
+    }
+}   
+     
+

@@ -23,3 +23,10 @@ exports.updateTutor = async (req, res) => {
     }
 
 }
+
+exports.deleteTutor = async (req, res) => {
+
+    await tutor.findByIdAndDelete(req.params.id);
+    res.status(200).json({message: "Produto removido com sucesso!"})
+
+}
