@@ -40,9 +40,25 @@ exports.updateVet = async (req, res) => {
 
 }
 
+exports.buscarComConsultas = async (req, res) => {
+  try {
+    const vet = await Veterinario.findOne({ crv: req.params.crv });
+    if (!vet) return res.status(404).json({ mensagem: "Veterinário não encontrado" });
+
+    // busca as consultas desse veterinário e ordena por data
+    const consultas = await Consulta.find({ veterinarioCRV: req.params.crv }).sort({ dataHora: -1 });
+
+    res.status(200).json({
+      veterinario: vet,
+      consultas: consultas
+    });
+  } catch (err) {
+    res.status(500).json({ erro: err.message });
+  }
+
 exports.deletevet = async (req, res) => {
 
     await vet.findByIdAndDelete(req.params.id);
     res.status(200).json({message: "Veterinario removido com sucesso!"})
 
-}
+}}
