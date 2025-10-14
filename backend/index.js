@@ -7,7 +7,8 @@ require("dotenv").config();
 const proutoRoutes = require("./routes/ProdutoRoute")
 const tutorRoute = require("./routes/TutorRoute");
 const petRoute = require("./routes/PetRouter")
-
+const veterinarioRoute = require("./routes/VeterinarioRoute");
+const consultaRoute = require("./routes/ConsultaRoute");
 
 app.use(cors());
 app.use(express.json());
@@ -15,6 +16,8 @@ app.use(express.json());
 app.use("/api/produto/", proutoRoutes)
 app.use("/api/tutor", tutorRoute)
 app.use("/api/pet", petRoute)
+app.use("/api/veterinario", veterinarioRoute)
+app.use("/api/consulta", consultaRoute)
 
 const connectDB = require("./db/connection");
 
